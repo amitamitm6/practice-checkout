@@ -1,0 +1,7 @@
+node_modules
+.next
+.env.local
+.vercel
+.playwright-mcp
+AGENTS.md
+/CLAUDE.md
