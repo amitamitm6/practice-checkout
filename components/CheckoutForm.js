@@ -8,7 +8,7 @@ import { capPhoneDigits, getMaxNationalNumberLength } from "../lib/phone";
 const PRODUCT = {
   name: "Daily Video Access",
   description: "One-time purchase",
-  price: 5.0,
+  price: 30.0,
 };
 
 const currentYear = new Date().getFullYear();
