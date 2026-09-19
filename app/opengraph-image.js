@@ -49,7 +49,7 @@ export default function OpengraphImage() {
               My Store
             </div>
             <div style={{ fontSize: 28, color: "#6b7280" }}>
-              Daily Video Access — $25.00
+              Daily Video Access — $5.00
             </div>
           </div>
         </div>
