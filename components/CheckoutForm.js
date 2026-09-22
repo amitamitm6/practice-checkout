@@ -33,6 +33,47 @@ const FULL_NAME_REGEX = new RegExp(`^${FULL_NAME_PATTERN}$`, "u");
 const FULL_NAME_MESSAGE =
   "Please enter your full name (first and last name).";
 
+function CardBrandIcons() {
+  return (
+    <span className="cardBrands" aria-hidden="true">
+      <svg viewBox="0 0 32 20" width="32" height="20">
+        <rect width="32" height="20" rx="3" fill="#1434CB" />
+        <text
+          x="16"
+          y="14"
+          textAnchor="middle"
+          fontSize="9"
+          fontStyle="italic"
+          fontWeight="700"
+          fill="#fff"
+          fontFamily="Arial, sans-serif"
+        >
+          VISA
+        </text>
+      </svg>
+      <svg viewBox="0 0 32 20" width="32" height="20">
+        <rect width="32" height="20" rx="3" fill="#F3F3F3" />
+        <circle cx="13" cy="10" r="6" fill="#EB001B" />
+        <circle cx="19" cy="10" r="6" fill="#F79E1B" fillOpacity="0.9" />
+      </svg>
+      <svg viewBox="0 0 32 20" width="32" height="20">
+        <rect width="32" height="20" rx="3" fill="#2E77BC" />
+        <text
+          x="16"
+          y="13"
+          textAnchor="middle"
+          fontSize="7"
+          fontWeight="700"
+          fill="#fff"
+          fontFamily="Arial, sans-serif"
+        >
+          AMEX
+        </text>
+      </svg>
+    </span>
+  );
+}
+
 function EyeIcon({ open }) {
   return open ? (
     <svg
@@ -273,7 +314,10 @@ export default function CheckoutForm({ onSuccess }) {
         </h2>
 
         <div className="field">
-          <label htmlFor="cardNumber">Card Number</label>
+          <div className="fieldLabelRow">
+            <label htmlFor="cardNumber">Card Number</label>
+            <CardBrandIcons />
+          </div>
           <input
             id="cardNumber"
             name="cardNumber"
@@ -366,6 +410,11 @@ export default function CheckoutForm({ onSuccess }) {
       <button type="submit" className="submitButton" disabled={submitting}>
         {submitting ? "Processing..." : `Pay $${PRODUCT.price.toFixed(2)}`}
       </button>
+
+      <p className="encryptionNote">
+        <span aria-hidden="true">🔒</span> Your payment information is
+        encrypted and secure
+      </p>
     </form>
   );
 }

@@ -133,6 +133,29 @@ select {
   color: #374151;
 }
 
+.fieldLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.fieldLabelRow label {
+  margin-bottom: 0;
+}
+
+.cardBrands {
+  display: flex;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+
+.cardBrands svg {
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
 .field input[type="text"],
 .field input[type="email"],
 .field input[type="tel"] {
@@ -390,6 +413,13 @@ select {
 .submitButton:focus-visible {
   outline: 2px solid #111827;
   outline-offset: 2px;
+}
+
+.encryptionNote {
+  margin: -12px 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6b7280;
 }
 
 /* Success screen */
