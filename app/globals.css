@@ -151,6 +151,19 @@ select {
   flex: 0 0 auto;
 }
 
+.inputWrap {
+  position: relative;
+}
+
+.inputCheck {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #16a34a;
+  pointer-events: none;
+}
+
 .cardBrands svg {
   border-radius: 3px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
@@ -165,6 +178,12 @@ select {
   border-radius: 8px;
   background: #fff;
   color: #111827;
+}
+
+.inputWrap input[type="text"],
+.inputWrap input[type="email"],
+.inputWrap input[type="tel"] {
+  padding-right: 36px;
 }
 
 .field input:focus,

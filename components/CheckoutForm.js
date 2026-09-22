@@ -32,6 +32,26 @@ const FULL_NAME_PATTERN =
 const FULL_NAME_REGEX = new RegExp(`^${FULL_NAME_PATTERN}$`, "u");
 const FULL_NAME_MESSAGE =
   "Please enter your full name (first and last name).";
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function CheckIcon() {
+  return (
+    <svg
+      className="inputCheck"
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
 
 function CardBrandIcons() {
   return (
@@ -161,6 +181,13 @@ export default function CheckoutForm({ onSuccess }) {
     [phoneDial]
   );
 
+  const fullNameValid = FULL_NAME_REGEX.test(fullName.trim());
+  const emailValid = EMAIL_REGEX.test(email);
+  const phoneValid = phoneNumber.trim() !== "";
+  const addressValid = address.trim() !== "";
+  const zipValid = zip.trim() !== "";
+  const cardNumberValid = cardNumber.length === 16;
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
@@ -212,29 +239,35 @@ export default function CheckoutForm({ onSuccess }) {
 
         <div className="field">
           <label htmlFor="fullName">Full Name</label>
-          <input
-            id="fullName"
-            name="fullName"
-            type="text"
-            required
-            pattern={FULL_NAME_PATTERN}
-            title={FULL_NAME_MESSAGE}
-            value={fullName}
-            onChange={handleFullNameChange}
-          />
+          <div className="inputWrap">
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              required
+              pattern={FULL_NAME_PATTERN}
+              title={FULL_NAME_MESSAGE}
+              value={fullName}
+              onChange={handleFullNameChange}
+            />
+            {fullNameValid && <CheckIcon />}
+          </div>
         </div>
 
         <div className="field">
           <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <div className="inputWrap">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {emailValid && <CheckIcon />}
+          </div>
         </div>
 
         <div className="field">
@@ -253,18 +286,20 @@ export default function CheckoutForm({ onSuccess }) {
                 );
               }}
             />
-            <input
-              id="phoneNumber"
-              name="phoneNumber"
-              type="tel"
-              required
-              className="phoneRow-input"
-              value={phoneNumber}
-              onChange={(e) => {
-                const sanitized = e.target.value.replace(/[^\d\s-]/g, "");
-                setPhoneNumber(capPhoneDigits(sanitized, maxPhoneDigits));
-              }}
-            />
+            <div className="inputWrap phoneRow-input">
+              <input
+                id="phoneNumber"
+                name="phoneNumber"
+                type="tel"
+                required
+                value={phoneNumber}
+                onChange={(e) => {
+                  const sanitized = e.target.value.replace(/[^\d\s-]/g, "");
+                  setPhoneNumber(capPhoneDigits(sanitized, maxPhoneDigits));
+                }}
+              />
+              {phoneValid && <CheckIcon />}
+            </div>
           </div>
         </div>
 
@@ -284,27 +319,33 @@ export default function CheckoutForm({ onSuccess }) {
 
         <div className="field">
           <label htmlFor="address">Address</label>
-          <input
-            id="address"
-            name="address"
-            type="text"
-            required
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
+          <div className="inputWrap">
+            <input
+              id="address"
+              name="address"
+              type="text"
+              required
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+            {addressValid && <CheckIcon />}
+          </div>
         </div>
 
         <div className="field">
           <label htmlFor="zip">Zip Code</label>
-          <input
-            id="zip"
-            name="zip"
-            type="text"
-            inputMode="numeric"
-            required
-            value={zip}
-            onChange={(e) => setZip(onlyDigits(e.target.value))}
-          />
+          <div className="inputWrap">
+            <input
+              id="zip"
+              name="zip"
+              type="text"
+              inputMode="numeric"
+              required
+              value={zip}
+              onChange={(e) => setZip(onlyDigits(e.target.value))}
+            />
+            {zipValid && <CheckIcon />}
+          </div>
         </div>
       </section>
 
@@ -318,17 +359,20 @@ export default function CheckoutForm({ onSuccess }) {
             <label htmlFor="cardNumber">Card Number</label>
             <CardBrandIcons />
           </div>
-          <input
-            id="cardNumber"
-            name="cardNumber"
-            type="text"
-            inputMode="numeric"
-            required
-            maxLength={19}
-            ref={cardNumberRef}
-            value={formatCardNumber(cardNumber)}
-            onChange={handleCardNumberChange}
-          />
+          <div className="inputWrap">
+            <input
+              id="cardNumber"
+              name="cardNumber"
+              type="text"
+              inputMode="numeric"
+              required
+              maxLength={19}
+              ref={cardNumberRef}
+              value={formatCardNumber(cardNumber)}
+              onChange={handleCardNumberChange}
+            />
+            {cardNumberValid && <CheckIcon />}
+          </div>
         </div>
 
         <div className="cardRow">
