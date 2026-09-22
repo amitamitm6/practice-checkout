@@ -22,9 +22,9 @@ export async function POST(request) {
     cvv,
   } = body;
 
-  if (!fullName || !email || !country) {
+  if (!fullName || !email || !country || !address || !zip) {
     return NextResponse.json(
-      { error: "Full name, email and country are required." },
+      { error: "Full name, email, country, address and zip are required." },
       { status: 400 }
     );
   }

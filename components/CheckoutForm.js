@@ -241,23 +241,25 @@ export default function CheckoutForm({ onSuccess }) {
         </div>
 
         <div className="field">
-          <label htmlFor="address">Address (optional)</label>
+          <label htmlFor="address">Address</label>
           <input
             id="address"
             name="address"
             type="text"
+            required
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
 
         <div className="field">
-          <label htmlFor="zip">Zip Code (optional)</label>
+          <label htmlFor="zip">Zip Code</label>
           <input
             id="zip"
             name="zip"
             type="text"
             inputMode="numeric"
+            required
             value={zip}
             onChange={(e) => setZip(onlyDigits(e.target.value))}
           />
