@@ -197,7 +197,7 @@ export default function CheckoutForm({ onSuccess }) {
         </div>
 
         <div className="field">
-          <label htmlFor="phoneNumber">Phone (optional)</label>
+          <label htmlFor="phoneNumber">Phone</label>
           <div className="phoneRow">
             <FlagDropdown
               id="phoneDial"
@@ -216,6 +216,7 @@ export default function CheckoutForm({ onSuccess }) {
               id="phoneNumber"
               name="phoneNumber"
               type="tel"
+              required
               className="phoneRow-input"
               value={phoneNumber}
               onChange={(e) => {
